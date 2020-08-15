@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <div class="form-row justify-content-end">
+    <button class="btn btn-link" type="button" (click)="removePaddock()">
+      <span class="text-danger">
+        Remove Paddock
+        <i class="fa fa-trash"></i>
+      </span>
+    </button>
+  </div>
+
+  <!-- Name -->
+  <div class="form-row justify-content-center">
+    <div class="form-group col-6">
+      <label for="Name">Name*</label>
+      <input type="text" class="form-control" required [(ngModel)]="paddock.Name" #Name="ngModel" name="Name"
+        [class.is-invalid]="Name.invalid && (isFarmSubmitted || Name.touched)">
+      <span class="text-danger" *ngIf="Name.invalid && (Name.touched || isFarmSubmitted)">
+        Name is required
+      </span>
+    </div>
+  </div>
+
+  <!-- Code -->
+  <div class="form-row justify-content-center">
+    <div class="form-group col-6">
+      <label for="Code">Code*</label>
+      <input type="text" class="form-control" required [(ngModel)]="paddock.Code" #Code="ngModel" name="Code"
+        [class.is-invalid]="Code.invalid && (isFarmSubmitted || Code.touched)">
+      <span class="text-danger" *ngIf="Code.invalid && (Code.touched || isFarmSubmitted)">
+        Name is required
+      </span>
+    </div>
+  </div>
+
+  <!-- Area -->
+  <div class="form-row justify-content-center">
+    <div class="form-group col-6">
+      <label for="Area">Area*</label>
+      <div class="input-group">
+        <input type="text" class="form-control" required [(ngModel)]="paddock.Area" #Area="ngModel" name="Area"
+          [class.is-invalid]="Area.invalid && (isFarmSubmitted || Area.touched)">
+        <div class="input-group-append">
+          <span class="input-group-text">hectare</span>
+        </div>
+      </div>
+      <span class="text-danger" *ngIf="Area.invalid && (Area.touched || isFarmSubmitted)">
+        Area is required
+      </span>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,31 @@
+<h4>Paddocks</h4>
+<!-- Add Paddocks -->
+<div class="form-row">
+  <div class="form-group col-8">
+    <button class="btn btn-link ml-3" type="button" (click)="addPaddock()">
+      <span class="text-primary">
+        Add Paddock
+        <i class="fa fa-plus-circle"></i>
+      </span>
+    </button>
+  </div>
+</div>
+
+<!-- Accordion for paddocks list -->
+<accordion *ngFor="let paddock of farm.Paddocks">
+  <accordion-group>
+    <!-- tie button click to openchange event and pass current paddock -->
+    <button class="btn btn-link btn-block clearfix" accordion-heading (click)="openChange(paddock)">
+      <!-- Title is paddock with  index (click here to complete) is accordion is closed, and paddock index if accordion is open -->
+      <div class="pull-left float-left" [class.text-danger]="isFarmSubmitted && !isPaddockValid(paddock)">Paddock
+        {{paddock.Index}} {{paddock.isOpen?'':'(Click Here to complete)'}}</div>
+      <span class="float-right pull-right text-danger" *ngIf="isFarmSubmitted && !isPaddockValid(paddock)">
+        <i class="fa fa-star"></i>
+      </span>
+      <!-- <div class="pull-left float-left">Paddock
+        {{paddock.Index}} {{paddock.isOpen?'':'(Click Here to complete)'}}</div> -->
+    </button>
+    <app-paddock [paddock]="paddock" (paddockDeleted)="paddockDeleted($event)" [isFarmSubmitted]="isFarmSubmitted">
+    </app-paddock>
+  </accordion-group>
+</accordion>

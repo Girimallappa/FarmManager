@@ -1,0 +1,57 @@
+<div class="container">
+  <h3 class="text-center">Farm Details</h3>
+  <div class="row">
+    <table class="table table-striped">
+      <colgroup>
+        <col class="bg-info">
+        <col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th scope="col">Detail&nbsp;Type</th>
+          <th scope="col">Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Name</td>
+          <td>{{farm.Name}}</td>
+        </tr>
+        <tr>
+          <td>Code</td>
+          <td>{{farm.Code}}</td>
+        </tr>
+        <tr>
+          <td>Harvested Date Time</td>
+          <td>{{farm.HarvestedDateTime | date:'medium'}}</td>
+        </tr>
+        <tr>
+          <td>Farm Type</td>
+          <td>{{farm.FarmTypeName}}</td>
+        </tr>
+        <tr>
+          <td>Total Area</td>
+          <td>{{totalArea}} hectare</td>
+        </tr>
+        <tr>
+          <td>Miller name</td>
+          <td>{{millerName}}</td>
+        </tr>
+        <tr>
+          <td>Paddock Names</td>
+          <td>
+            <ul class="comma-list">
+              <li *ngFor="let paddock of paddockNames">
+                {{ paddock }}
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mt-2 d-flex justify-content-center">
+    <a class="btn btn-primary mr-4" [routerLink]="['/home']" role="button">Back to List</a>
+    <button class="btn btn-success" (click)="editFarm()">Edit Farm</button>
+  </div>
+</div>

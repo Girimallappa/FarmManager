@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="d-flex justify-content-end mt-2">
+    <button class="btn btn-primary" (click)="createFarm()">Create New Farm</button>
+  </div>
+  <!-- Search parameters -->
+  <div class="bg-light border border-success rounded mt-4 p-4" *ngIf="searchFarmsModel">
+    <h3 class="text-center">Search Farms</h3>
+    <form>
+      <div class="row">
+        <div class="form-group col">
+          <label for="farmname">Farmname</label>
+          <input type="text" class="form-control" id="farmname" placeholder="farmname"
+            [(ngModel)]="searchFarmsModel.farmname" name="farmname">
+        </div>
+        <div class="form-group col">
+          <label for="millId">Millers</label>
+          <select id="millId" class="form-control" [(ngModel)]="searchFarmsModel.millId" name="millId">
+            <option value="null">--Select--</option>
+            <option *ngFor="let m of mills" [ngValue]="m.Id">{{m.Name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-primary btn-lg mr-4" [disabled]="!searchFarmsModel.isSearchModelNotEmpty()"
+          (click)="searchFarms(searchFarmsModel)">Search</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Search Results -->
+  <div *ngIf="showSearchResults" class="mt-4">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Code</th>
+          <th scope="col">Harvested on</th>
+          <th scope="col">Farm Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let farm of visibleFarms | paginate: config">
+
+          <td>
+            <a [routerLink]="['/details',farm.Id]">{{farm.Name}}</a>
+          </td>
+          <td>{{farm.Code}}</td>
+          <td>{{farm.HarvestedDateTime | date:'medium'}}</td>
+          <td>{{farm.FarmTypeName}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+  </div>
+
+  <!-- Search failed message -->
+  <div *ngIf="!showSearchResults">
+    <h3 class="display-4 text-center">There are no farms for the given search criteria.</h3>
+  </div>
+</div>

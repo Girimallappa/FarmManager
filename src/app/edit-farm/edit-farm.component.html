@@ -1,0 +1,96 @@
+<!-- Create/Edit Farm -->
+<div class="container p-5" id="farmContainer" *ngIf="farm">
+  <h3>{{title}}</h3>
+  <hr>
+  <form #farmForm="ngForm">
+    <!-- Name -->
+    <div class="form-row">
+      <div class="form-group col-4">
+        <label for="Name">Farm&nbsp;name*</label>
+        <input type="text" class="form-control" required [(ngModel)]="farm.Name" #Name="ngModel" name="Name"
+          [class.is-invalid]="Name.invalid && (isFarmSubmitted || Name.touched)">
+        <span class="text-danger" *ngIf="Name.invalid && (Name.touched || isFarmSubmitted)">
+          Name is required
+        </span>
+      </div>
+    </div>
+
+    <!-- Code -->
+    <div class="form-row">
+      <div class="form-group col-4">
+        <label for="Code">Code*</label>
+        <input type="text" class="form-control" required [(ngModel)]="farm.Code" #Code="ngModel" name="Code"
+          [class.is-invalid]="Code.invalid && (isFarmSubmitted || Code.touched)">
+        <span class="text-danger" *ngIf="Code.invalid && (Code.touched || isFarmSubmitted)">
+          Code is required
+        </span>
+      </div>
+    </div>
+
+    <!-- Harvested date time -->
+    <div class="form-row">
+      <div class="form-group col-4">
+        <label for="HarvestedDateTime">HarvestedDateTime*</label>
+        <input type="text" required bsDatepicker [bsConfig]="harvestedDatePickerConfig" class="form-control"
+          [(ngModel)]="farm.HarvestedDateTime" name="HarvestedDateTime" #HarvestedDateTime="ngModel"
+          [class.is-invalid]="HarvestedDateTime.invalid && (isFarmSubmitted || HarvestedDateTime.touched)"
+          [value]="harvestDateTimeStr">
+
+        <span class="text-danger" *ngIf="HarvestedDateTime.invalid && (isFarmSubmitted || HarvestedDateTime.touched)">
+          Harvested date is required
+        </span>
+      </div>
+    </div>
+
+    <!-- Farm Type -->
+    <div class="form-row">
+      <div class="form-group col-4">
+        <label for="FarmType">Farm&nbsp;Type*</label>
+        <select class="form-control" id="FarmType" [(ngModel)]="farm.FarmType" name="FarmType" appSelectValidator
+          #FarmType="ngModel"
+          [class.is-invalid]="(FarmType.touched && FarmType.errors?.defaultSelected) || (isFarmSubmitted)">
+          <option value="-1">-- Please Select --</option>
+          <option *ngFor="let farmType of farmTypes" [value]="farmType.value">
+            {{farmType.word}}
+          </option>
+        </select>
+        <span class="text-danger" *ngIf="(FarmType.touched && FarmType.errors?.defaultSelected) || (isFarmSubmitted)">
+          Farm type is required
+        </span>
+      </div>
+    </div>
+
+    <!-- Mill -->
+    <div class="form-row">
+      <div class="form-group col-4">
+        <label for="MillerId">Mill*</label>
+        <select class="form-control" id="MillerId" [(ngModel)]="farm.MillerId" name="MillerId" appSelectValidator
+          #MillerId="ngModel"
+          [class.is-invalid]="(MillerId.touched && MillerId.errors?.defaultSelected) || (isFarmSubmitted)">
+          <option value="-1">-- Please Select --</option>
+          <option *ngFor="let mill of mills" [value]="mill.Id">
+            {{mill.Name}}
+          </option>
+        </select>
+        <span class="text-danger" *ngIf="(MillerId.touched && MillerId.errors?.defaultSelected) || (isFarmSubmitted)">
+          Mill is required
+        </span>
+      </div>
+    </div>
+
+    <!-- Paddocks -->
+    <app-paddocks-list [farm]="farm" [isFarmSubmitted]="isFarmSubmitted" (paddocksChanged)="onPaddocksChanged($event)">
+    </app-paddocks-list>
+
+    <!-- Submit or cancel buttons -->
+    <div class="form-row mt-2">
+      <div class="form-group mr-2">
+        <input type="submit" value="Submit" class="btn btn-lg btn-block btn-success" [disabled]='!farmForm.valid'
+          (click)="submitFarm(farm)">
+      </div>
+      <div class="form-group">
+        <input type="button" value="Cancel" (click)="cancelFarmChanges()" class="btn btn-lg btn-block btn-danger">
+      </div>
+    </div>
+  </form>
+</div>
