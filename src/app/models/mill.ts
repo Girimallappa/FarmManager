@@ -1,3 +1,6 @@
+/**
+ * Mill model
+ */
 export class Mill {
   Id: number;
   Name: string;

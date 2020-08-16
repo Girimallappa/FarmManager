@@ -1,4 +1,5 @@
 <div class="container">
+  <!-- button to create a new farm -->
   <div class="d-flex justify-content-end mt-2">
     <button class="btn btn-primary" (click)="createFarm()">Create New Farm</button>
   </div>
@@ -7,11 +8,13 @@
     <h3 class="text-center">Search Farms</h3>
     <form>
       <div class="row">
+        <!-- enter farm name to search -->
         <div class="form-group col">
           <label for="farmname">Farmname</label>
           <input type="text" class="form-control" id="farmname" placeholder="farmname"
             [(ngModel)]="searchFarmsModel.farmname" name="farmname">
         </div>
+        <!-- select millers id to search -->
         <div class="form-group col">
           <label for="millId">Millers</label>
           <select id="millId" class="form-control" [(ngModel)]="searchFarmsModel.millId" name="millId">
@@ -21,6 +24,7 @@
         </div>
       </div>
 
+      <!-- button to search -->
       <div class="d-flex justify-content-center">
         <button type="button" class="btn btn-primary btn-lg mr-4" [disabled]="!searchFarmsModel.isSearchModelNotEmpty()"
           (click)="searchFarms(searchFarmsModel)">Search</button>
@@ -51,6 +55,7 @@
         </tr>
       </tbody>
     </table>
+    <!-- pagination controls -->
     <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
   </div>
 

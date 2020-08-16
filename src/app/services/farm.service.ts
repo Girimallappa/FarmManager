@@ -92,16 +92,15 @@ export class FarmService {
     }
   }
 
+  /**
+   * saves the farm
+   * @param farm
+   */
   saveFarm(farm: Farm): void {
     // remove the farm from store
     if (farm.Id > 0) {
       // remove all the paddocks
-      const paddocksToDelete = this._paddocksService.getByIds(farm.PaddockIds); // this._paddocksService.getByOwnerId(farm.Id);
-      const paddockIdsToDelete = _.chain(paddocksToDelete)
-        .map((p) => p.Id)
-        .value();
-
-      for (const pId of paddockIdsToDelete) {
+      for (const pId of farm.PaddockIds) {
         this._paddocksService.delete(pId);
       }
 

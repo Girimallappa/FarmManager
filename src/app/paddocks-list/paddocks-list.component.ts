@@ -10,6 +10,9 @@ import {
 } from '@angular/core';
 import * as _ from 'lodash';
 
+/**
+ * list component for Paddocks management
+ */
 @Component({
   selector: 'app-paddocks-list',
   templateUrl: './paddocks-list.component.html',

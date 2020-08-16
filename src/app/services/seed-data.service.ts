@@ -7,6 +7,9 @@ import { FarmService } from './farm.service';
 import * as _ from 'lodash';
 import { Farm } from '../models/farm';
 
+/**
+ * Seed data service will seed the data for the application
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -17,12 +20,17 @@ export class SeedDataService {
     private _millsService: MillService
   ) {}
 
+  /**
+   * seeds data only if data not present in local store
+   */
   seedDataIfRequired(): void {
+    // seed mills
     const mills = this._millsService.getAll();
     if (!mills || mills.length === 0) {
       this.seedMillsData();
     }
 
+    // seed farms
     const farms = this._farmsService.getAll();
     if (!farms || farms.length === 0) {
       this.seedFarmsData();
@@ -51,6 +59,7 @@ export class SeedDataService {
       farm.HarvestedDateTime.setMonth(farm.HarvestedDateTime.getMonth() - 6);
       this.setFarmType(farm);
 
+      // seed paddocks
       for (let j = 1; j <= 20; j++) {
         const paddock = new Paddock();
         paddock.OwnerFarmId = i;

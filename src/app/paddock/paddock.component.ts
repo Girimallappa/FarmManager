@@ -8,14 +8,19 @@ import {
   SimpleChange,
 } from '@angular/core';
 
+/**
+ * Paddock component to manage the paddock
+ */
 @Component({
   selector: 'app-paddock',
   templateUrl: './paddock.component.html',
   styleUrls: ['./paddock.component.css'],
 })
 export class PaddockComponent implements OnInit {
+  // input paddock from parent
   @Input() paddock: Paddock;
 
+  // input isFarmSubmitted from parent
   @Input() isFarmSubmitted: boolean;
 
   // Event when paddock is deleted

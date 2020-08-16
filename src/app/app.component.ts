@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   constructor(private _seedDataService: SeedDataService) {}
 
   ngOnInit(): void {
+    // This is for seeding the application data, not needed when integrated with REST Api.
     this._seedDataService.seedDataIfRequired();
   }
 }

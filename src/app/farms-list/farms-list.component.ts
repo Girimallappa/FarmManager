@@ -7,6 +7,9 @@ import * as _ from 'lodash';
 import { Farm } from '../models/farm';
 import { Router } from '@angular/router';
 
+/**
+ * Farms list component
+ */
 @Component({
   selector: 'app-farms-list',
   templateUrl: './farms-list.component.html',
@@ -15,10 +18,14 @@ import { Router } from '@angular/router';
 export class FarmsListComponent implements OnInit {
   searchFarmsModel: searchFarmsModel;
   mills: Mill[];
-  /*show search results flag*/
+
+  // show search results flag
   showSearchResults: boolean;
+
+  // farms list visible in the list
   visibleFarms: Farm[];
 
+  // config for ngx-pagination component
   config: any;
 
   constructor(
@@ -69,6 +76,7 @@ export class FarmsListComponent implements OnInit {
   }
 
   createFarm() {
+    // to create we use edit component but pass id as -1
     this._router.navigate(['/edit', -1]);
   }
 }

@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
 
+/**
+ * Farm details component
+ */
 @Component({
   selector: 'app-farm-details',
   templateUrl: './farm-details.component.html',

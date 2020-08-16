@@ -1,3 +1,6 @@
+/**
+ * Paddock model
+ */
 export class Paddock {
   Id: number;
   Name: string;
@@ -5,6 +8,7 @@ export class Paddock {
   Area: number;
   OwnerFarmId: number;
 
-  Index: number; // only on client side.
+  // used only on client side.
+  Index: number;
   isOpen: boolean;
 }

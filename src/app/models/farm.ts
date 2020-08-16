@@ -1,6 +1,9 @@
 import { Paddock } from './paddock';
 import { FarmTypeEnum } from './FarmTypeEnum';
 
+/**
+ * Farm model
+ */
 export class Farm {
   constructor() {
     this.PaddockIds = [];
@@ -14,6 +17,7 @@ export class Farm {
   PaddockIds: number[];
   MillerId: number;
 
+  // used only on client side
   Paddocks: Paddock[];
   FarmTypeName: string;
 }

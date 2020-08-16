@@ -2,6 +2,10 @@ import { Paddock } from './../models/paddock';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 
+/**
+ * Paddocks service uses browser local store to store the paddocks.
+ * The methods will use REST api in real application
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -77,12 +81,20 @@ export class PaddockService {
     }
   }
 
+  /**
+   * Gets the paddocks for given Ids
+   * @param ids
+   */
   getByIds(ids: number[]): Paddock[] {
     const paddocks = this.getAll();
     const filterdPaddocks = _.filter(paddocks, (p) => _.includes(ids, p.Id));
     return filterdPaddocks;
   }
 
+  /**
+   * Get paddocks by owner farm id
+   * @param ownerFarmId
+   */
   getByOwnerId(ownerFarmId: number): Paddock[] {
     const paddocks = this.getAll();
     const filterdPaddocks = _.filter(

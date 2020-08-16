@@ -22,8 +22,6 @@
       <span class="float-right pull-right text-danger" *ngIf="isFarmSubmitted && !isPaddockValid(paddock)">
         <i class="fa fa-star"></i>
       </span>
-      <!-- <div class="pull-left float-left">Paddock
-        {{paddock.Index}} {{paddock.isOpen?'':'(Click Here to complete)'}}</div> -->
     </button>
     <app-paddock [paddock]="paddock" (paddockDeleted)="paddockDeleted($event)" [isFarmSubmitted]="isFarmSubmitted">
     </app-paddock>

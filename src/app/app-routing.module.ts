@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FarmsListComponent } from './farms-list/farms-list.component';
 
+// application routes
 const routes: Routes = [
   { path: 'home', component: FarmsListComponent },
   { path: 'details/:id', component: FarmDetailsComponent },
