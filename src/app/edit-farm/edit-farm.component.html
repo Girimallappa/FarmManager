@@ -47,14 +47,13 @@
       <div class="form-group col-4">
         <label for="FarmType">Farm&nbsp;Type*</label>
         <select class="form-control" id="FarmType" [(ngModel)]="farm.FarmType" name="FarmType" appSelectValidator
-          #FarmType="ngModel"
-          [class.is-invalid]="(FarmType.touched && FarmType.errors?.defaultSelected) || (isFarmSubmitted)">
+          #FarmType="ngModel" [class.is-invalid]="(FarmType.touched && FarmType.errors?.defaultSelected)">
           <option value="-1">-- Please Select --</option>
           <option *ngFor="let farmType of farmTypes" [value]="farmType.value">
             {{farmType.word}}
           </option>
         </select>
-        <span class="text-danger" *ngIf="(FarmType.touched && FarmType.errors?.defaultSelected) || (isFarmSubmitted)">
+        <span class="text-danger" *ngIf="(FarmType.touched && FarmType.errors?.defaultSelected)">
           Farm type is required
         </span>
       </div>
@@ -65,14 +64,13 @@
       <div class="form-group col-4">
         <label for="MillerId">Mill*</label>
         <select class="form-control" id="MillerId" [(ngModel)]="farm.MillerId" name="MillerId" appSelectValidator
-          #MillerId="ngModel"
-          [class.is-invalid]="(MillerId.touched && MillerId.errors?.defaultSelected) || (isFarmSubmitted)">
+          #MillerId="ngModel" [class.is-invalid]="(MillerId.touched && MillerId.errors?.defaultSelected)">
           <option value="-1">-- Please Select --</option>
           <option *ngFor="let mill of mills" [value]="mill.Id">
             {{mill.Name}}
           </option>
         </select>
-        <span class="text-danger" *ngIf="(MillerId.touched && MillerId.errors?.defaultSelected) || (isFarmSubmitted)">
+        <span class="text-danger" *ngIf="(MillerId.touched && MillerId.errors?.defaultSelected)">
           Mill is required
         </span>
       </div>
@@ -85,8 +83,7 @@
     <!-- Submit or cancel buttons -->
     <div class="form-row mt-2">
       <div class="form-group mr-2">
-        <input type="submit" value="Submit" class="btn btn-lg btn-block btn-success" [disabled]='!farmForm.valid'
-          (click)="submitFarm(farm)">
+        <input type="submit" value="Submit" class="btn btn-lg btn-block btn-success" (click)="submitFarm(farm)">
       </div>
       <div class="form-group">
         <input type="button" value="Cancel" (click)="cancelFarmChanges()" class="btn btn-lg btn-block btn-danger">

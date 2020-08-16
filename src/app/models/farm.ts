@@ -7,6 +7,8 @@ import { FarmTypeEnum } from './FarmTypeEnum';
 export class Farm {
   constructor() {
     this.PaddockIds = [];
+    this.FarmType = -1;
+    this.MillerId = -1;
   }
 
   Id: number;
